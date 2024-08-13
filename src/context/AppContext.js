@@ -9,6 +9,7 @@ export default function AppContextProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
+  const [isDark, setIsdark] = useState(true);
   const navigate = useNavigate();
 
   // Fetch Blog Data
@@ -41,9 +42,8 @@ export default function AppContextProvider({ children }) {
 
   // Handle When Next and Previous button are clicked
   const handlePageChange = (page) => {
-    navigate({search : `?page=${page}`});
+    navigate({ search: `?page=${page}` });
     setPage(page);
-
   };
 
   const value = {
@@ -57,6 +57,8 @@ export default function AppContextProvider({ children }) {
     setTotalPages,
     fetchBlogPosts,
     handlePageChange,
+    isDark,
+    setIsdark,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

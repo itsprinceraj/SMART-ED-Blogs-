@@ -10,7 +10,7 @@ const BlogPage = () => {
   const [relatedblog, setRelatedblog] = useState([]);
   const location = useLocation();
   const navigation = useNavigate();
-  const { loading, setLoading } = useContext(AppContext);
+  const { loading, setLoading, isDark } = useContext(AppContext);
   const blogId = location.pathname.split("/").at(-1);
   const newBaseUrl = "https://codehelp-apis.vercel.app/api/";
 
@@ -36,15 +36,34 @@ const BlogPage = () => {
     }
   }, [location.pathname]);
 
+  useEffect(() => {
+    document.body.style.backgroundColor = isDark ? "black" : "white";
+  }, [isDark]);
+
   return (
-    <div>
+    <div
+      className={` w-6/12 mx-auto pb-6 pt-24 ${
+        isDark ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
       <Header />
-      <div>
-        <button onClick={() => navigation(-1)}>Back</button>
+      <div className="mb-2 ml-1">
+        <button
+          className=" border px-3 rounded-sm  border-blue-400"
+          onClick={() => navigation(-1)}
+        >
+          Back
+        </button>
       </div>
-      <div>
+      <div
+        className={`  ${
+          isDark ? "bg-black text-white" : "bg-white text-black"
+        }`}
+      >
         {loading ? (
-          <p>Loading...</p>
+          <p className="flex justify-center items-center text-xl font-semibold">
+            Loading...
+          </p>
         ) : blog ? (
           <div>
             <BlogDetails post={blog} />

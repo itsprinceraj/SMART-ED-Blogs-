@@ -5,7 +5,7 @@ export default function Blogs() {
   const { posts, loading } = useContext(AppContext);
 
   return (
-    <div className="flex flex-col gap-y-10 my-4">
+    <div className="flex flex-col gap-y-6 pb-20 pt-24 w-6/12 mx-auto group">
       {loading ? (
         <div className="min-h-[80vh] w-full flex justify-center items-center">
           <p className="text-center font-bold text-3xl">Loading</p>
@@ -15,9 +15,7 @@ export default function Blogs() {
           <p className="text-center font-bold text-3xl">No Blogs Found !</p>
         </div>
       ) : (
-        posts.map((post) => (
-          <BlogDetails key={post.id} post={post} />
-        ))
+        posts.map((post) => <BlogDetails key={post.id} post={post} />)
       )}
     </div>
   );
