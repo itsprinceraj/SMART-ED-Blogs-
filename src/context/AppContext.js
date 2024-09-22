@@ -42,7 +42,7 @@ export default function AppContextProvider({ children }) {
 
   // Handle When Next and Previous button are clicked
   const handlePageChange = (page) => {
-    navigate({ search: `?page=${page}` });
+    navigate({ search: `?page=${page}` }); //  search for the page in the url for the querystring page.
     setPage(page);
   };
 
